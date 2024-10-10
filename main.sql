@@ -7,7 +7,6 @@ CREATE TABLE Covid19 (
     total_new_cases INT
 );
 
-
 CREATE TABLE Country (
     country_id SERIAL PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
@@ -20,23 +19,20 @@ CREATE TABLE Country (
     FOREIGN KEY (covid_id) REFERENCES Covid19(covid_id)
 );
 
-
 CREATE TABLE Account (
     username VARCHAR(20) PRIMARY KEY,
     password VARCHAR(20) NOT NULL,
     language VARCHAR(20)
 );
 
-
 CREATE TABLE Graph (
     graph_id SERIAL PRIMARY KEY,
     username VARCHAR(20), 
     style INT,
-    min_time TIMESTAMP NOT NULL,
-    max_time TIMESTAMP NOT NULL,
+    min_time DATE NOT NULL,  -- Changed from TIMESTAMP to DATE
+    max_time DATE NOT NULL,  -- Changed from TIMESTAMP to DATE
     FOREIGN KEY (username) REFERENCES Account(username) ON DELETE CASCADE
 );
-
 
 CREATE TABLE FavoriteVisualizations (
     username VARCHAR(20), 
@@ -46,13 +42,11 @@ CREATE TABLE FavoriteVisualizations (
     FOREIGN KEY (graph_id) REFERENCES Graph(graph_id) ON DELETE CASCADE
 );
 
-
 CREATE TABLE Case (
     case_id SERIAL PRIMARY KEY,
     location VARCHAR(50),
-    time TIMESTAMP,
+    time DATE,  -- Changed from TIMESTAMP to DATE
     fatal BOOLEAN,
     country_id INT, 
     FOREIGN KEY (country_id) REFERENCES Country(country_id)
 );
-
