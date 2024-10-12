@@ -16,7 +16,6 @@ CREATE TABLE Country (
     num_active_cases INT,
     num_new_cases INT,
     covid_id INT,
-    FOREIGN KEY (covid_id) REFERENCES Covid19(covid_id)
 );
 
 CREATE TABLE Account (
