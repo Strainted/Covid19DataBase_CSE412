@@ -1,0 +1,32 @@
+/* Header.css */
+
+header {
+    display: flex;
+    flex-direction: column; /* Align the title and nav vertically */
+    justify-content: flex-start; /* Keep the title at the top */
+    align-items: center; /* Center the title and nav horizontally */
+    padding: 20px;
+  }
+  
+  .title {
+    text-align: center;
+  }
+  
+  .link-container {
+    display: flex;
+    justify-content: space-between; /* Space out links evenly */
+    width: 60%;  /* Adjust width to fit your layout */
+    margin-top: 20px; /* Space between title and links */
+  }
+  
+  .link {
+    text-decoration: none;
+    color: blue;
+    font-size: 1.2rem;
+    padding: 10px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
