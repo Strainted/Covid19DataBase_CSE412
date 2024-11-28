@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Filters from './Filters';
+import Header from './Header';
+import CovidTotalHeader from './CovidTotalHeader';
 
 const Dashboard = () => {
   const [data, setData] = useState([]);
@@ -19,6 +21,8 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Header/>
+      <CovidTotalHeader></CovidTotalHeader>
       <Filters onFilterChange={handleFilterChange} />
       <ul>
         {data.filter(item => item.Country.includes(filters.country)).map((item, index) => (
