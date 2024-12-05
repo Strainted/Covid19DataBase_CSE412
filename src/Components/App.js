@@ -4,6 +4,8 @@ import { ThemeProvider } from '@mui/material/styles';
 import theme from '../theme/theme';
 import Layout from './Layout';
 import Dashboard from './Dashboard';
+import Login from './Login';
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Dashboard />} />
+            <Route path="/login" element={<Login />} />
             {/* Other routes can be added here */}
           </Routes>
         </Layout>

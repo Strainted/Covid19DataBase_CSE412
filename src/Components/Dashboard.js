@@ -7,10 +7,12 @@ import styles from './Dashboard.module.css';
 import { TextField } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const navigate = useNavigate();
 
   const handleCountryChange = (country) => {
     console.log('Country selected:', country);
@@ -26,12 +28,17 @@ function Dashboard() {
     console.log('End Date:', date);
   };
 
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
   return (
     <div className={styles.dashboardContainer}>
       <nav className={styles.navbar}>
         <div className={styles.logo}>COVID-19 Data Visualizer</div>
         <ul className={styles.navLinks}>
           <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#login" onClick={handleLoginClick}>Login</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
