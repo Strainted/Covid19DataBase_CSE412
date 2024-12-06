@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  
 import './Login.css';
-import { createClient } from '@supabase/supabase-js'
-
-const REACT_APP_SUPABASE_URL='https://pyacfznwimzhdwtrrvvx.supabase.co'
-const REACT_APP_SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5YWNmem53aW16aGR3dHJydnZ4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3MzkwNzQsImV4cCI6MjA0ODMxNTA3NH0.h87uieiV0ds6g1SK9d_95gFAJ0xmoWxenrhRn5dq9ds'
-
-const supabase = createClient(REACT_APP_SUPABASE_URL, REACT_APP_SUPABASE_ANON_KEY)
+import {supabase} from '../supabaseClient.js'
         
 
 const Login = () => {
@@ -22,24 +17,28 @@ const Login = () => {
       return;
     }
 
-    console.log("username: " + userName)
-    console.log("password: " + password)
+    
 
     try {
       const { data, error } = await supabase
         .from('Account')
-        .select('password')
-        .eq('username', userName) 
+        .select('*')
+        .eq('username', userName.trim())
         .single()
         
+
+        console.log("Supabase response: ", data)
+        console.log('Error', error)
       
 
       if (error) {
         setError('Login failed: ' + error.message);
         return;
       }
+      console.log("data password: " + data.password)
+      console.log("Password: " + password)
 
-      if (data && data === password) {
+      if (data.password === password) {
         setError('');
         navigate('/'); // Navigate to home after login
       } else {
@@ -61,7 +60,7 @@ const Login = () => {
     try {
       const { error } = await supabase
         .from('Account')
-        .insert([{ username: userName, password: password }]);
+        .insert([{ username: userName.trim(), password: password.trim() }]);
   
       if (error) {
         setError('Sign-up failed: ' + error.message);
