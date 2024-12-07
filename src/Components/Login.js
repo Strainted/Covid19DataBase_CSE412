@@ -17,8 +17,6 @@ const Login = () => {
       return;
     }
 
-    
-
     try {
       const { data, error } = await supabase
         .from('Account')
@@ -26,10 +24,6 @@ const Login = () => {
         .eq('username', userName.trim())
         .single()
         
-
-        console.log("Supabase response: ", data)
-        console.log('Error', error)
-      
 
       if (error) {
         setError('Login failed: ' + error.message);
@@ -40,7 +34,7 @@ const Login = () => {
 
       if (data.password === password) {
         setError('');
-        navigate('/'); // Navigate to home after login
+        navigate('/', {state: {userName}}); // Navigate to home after login
       } else {
         setError('Invalid username or password.');
       }
@@ -66,7 +60,7 @@ const Login = () => {
         setError('Sign-up failed: ' + error.message);
       } else {
         setError('');
-        navigate('/'); // Navigate to home after sign up
+        navigate('/', {state: {userName}}); // Navigate to home after sign up
       }
     } catch (err) {
       setError('An error occurred during sign-up.');
