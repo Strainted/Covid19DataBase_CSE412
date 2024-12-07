@@ -15,7 +15,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/Login" element={<Login />} />
             {/* Other routes can be added here */}
           </Routes>
         </Layout>
